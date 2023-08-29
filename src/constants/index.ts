@@ -1,4 +1,9 @@
+// better to have endpoint in backend with this data to prevent hardcode.
+
+// empty strings in arrays to remove value. Of course we can do it in another way
+
 const typeValues = [
+  "",
   "cardio",
   "olympic_weightlifting",
   "plyometrics",
@@ -8,6 +13,7 @@ const typeValues = [
   "strongman",
 ];
 const muscleValues = [
+  "",
   "abdominals",
   "abductors",
   "adductors",
@@ -25,6 +31,6 @@ const muscleValues = [
   "traps",
   "triceps",
 ];
-const difficultyValues = ["beginner", "intermediate", "expert"];
+const difficultyValues = ["", "beginner", "intermediate", "expert"];
 
 export { typeValues, muscleValues, difficultyValues };

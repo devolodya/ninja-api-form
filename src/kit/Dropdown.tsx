@@ -1,15 +1,19 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import styled from "styled-components";
+import { keyGenerator } from "../utils";
 
 interface DropProps {
-  data: Array<any>;
+  data: Array<string>;
+  onClick: (item: string) => void;
 }
 
-const Dropdown: FC<DropProps> = ({ data }) => {
+const Dropdown: FC<DropProps> = ({ data, onClick }) => {
   return (
     <Container>
-      {data.map((item: any) => (
-        <Row>{item}</Row>
+      {data.map((item: string) => (
+        <Row key={keyGenerator()} onClick={() => onClick(item)}>
+          {item}
+        </Row>
       ))}
     </Container>
   );
@@ -22,7 +26,7 @@ const Container = styled.div({
   top: "75px",
   width: "80%",
   maxHeight: "160px",
-  background: "gray",
+  background: "black",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",

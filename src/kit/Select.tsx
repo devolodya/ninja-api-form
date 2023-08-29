@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import styled from "styled-components";
 import Dropdown from "./Dropdown";
 import useIsOpenControl from "../hooks/useIsOpenControl";
@@ -8,10 +8,18 @@ interface SelectProps {
   label: string;
   dropData: Array<string>;
   value: string;
+  onSelect: (item: string) => void;
 }
 
-const Select: FC<SelectProps> = ({ placeholder, label, dropData, value }) => {
+const Select: FC<SelectProps> = ({
+  placeholder,
+  label,
+  dropData,
+  value,
+  onSelect,
+}) => {
   const { isOpen, toggle } = useIsOpenControl();
+
   return (
     <Container>
       <InputLabel>{label}</InputLabel>
@@ -22,7 +30,7 @@ const Select: FC<SelectProps> = ({ placeholder, label, dropData, value }) => {
           )}
           <DropIcon isOpen={isOpen}>🔽</DropIcon>
         </SelectElement>
-        {isOpen && <Dropdown data={dropData} />}
+        {isOpen && <Dropdown data={dropData} onClick={onSelect} />}
       </SelectContainer>
     </Container>
   );

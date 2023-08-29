@@ -1,8 +1,8 @@
-import React from "react";
+import { FC } from "react";
 import { styled } from "styled-components";
-import Form from "../components/Form";
+import { Form } from "../components";
 
-const Home = () => {
+const Home: FC = () => {
   return (
     <Container>
       <Form />

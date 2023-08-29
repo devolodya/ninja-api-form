@@ -1,14 +1,17 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import styled from "styled-components";
 
 interface ButtonProps {
   text: string;
   onClick: () => void;
+  disabled?: boolean;
 }
-const Button: FC<ButtonProps> = ({ text, onClick }) => {
+const Button: FC<ButtonProps> = ({ text, onClick, disabled }) => {
   return (
     <Container>
-      <ButtonElement onClick={onClick}>{text}</ButtonElement>
+      <ButtonElement onClick={onClick} disabled={disabled}>
+        {text}
+      </ButtonElement>
     </Container>
   );
 };
@@ -22,17 +25,18 @@ const Container = styled.div({
   justifyContent: "center",
   alignItems: "center",
 });
-const ButtonElement = styled.button({
+const ButtonElement = styled.button(({ disabled }) => ({
   width: "60%",
   height: "40px",
-  background: "blueviolet",
+  background: disabled ? "gray" : "blueviolet",
   border: "none",
   borderRadius: "8px",
   boxShadow: "1px 1px black",
   color: "white",
   fontWeight: 600,
   transition: "0.2s ease-in",
+  cursor: disabled ? "default" : "pointer",
   "&:hover": {
-    background: "violet",
+    background: disabled ? "gray" : "violet",
   },
-});
+}));

@@ -1,3 +1,3 @@
-import { clearInput } from "./clearInput";
+import { keyGenerator } from "./keyGenerator";
 
-export { clearInput };
+export { keyGenerator };
