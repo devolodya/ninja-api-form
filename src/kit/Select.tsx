@@ -18,7 +18,7 @@ const Select: FC<SelectProps> = ({
   value,
   onSelect,
 }) => {
-  const { isOpen, toggle } = useIsOpenControl();
+  const { isopen, toggle } = useIsOpenControl();
 
   const clearSelect = (value: any) => (value = "");
   return (
@@ -32,9 +32,9 @@ const Select: FC<SelectProps> = ({
           {value && (
             <ClearIcon onClick={() => clearSelect(value)}>❌</ClearIcon>
           )}
-          <DropIcon isOpen={isOpen}>🔽</DropIcon>
+          <DropIcon isopen={isopen}>🔽</DropIcon>
         </SelectElement>
-        {isOpen && <Dropdown data={dropData} onClick={onSelect} />}
+        {isopen && <Dropdown data={dropData} onClick={onSelect} />}
       </SelectContainer>
     </Container>
   );
@@ -82,7 +82,7 @@ const SelectLabel = styled.div({
   alignItems: "center",
   fontWeight: 600,
 });
-const DropIcon = styled.div<{ isOpen: boolean }>(({ isOpen }) => ({
+const DropIcon = styled.div<{ isopen: boolean }>(({ isopen }) => ({
   width: "20px",
   height: "20px",
   position: "absolute",
@@ -90,7 +90,7 @@ const DropIcon = styled.div<{ isOpen: boolean }>(({ isOpen }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  transform: isOpen ? "rotate(180deg)" : "rotate(0)",
+  transform: isopen ? "rotate(180deg)" : "rotate(0)",
   transition: "0.2s ease-in",
 }));
 const ClearIcon = styled.div({

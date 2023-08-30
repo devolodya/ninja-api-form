@@ -1,13 +1,13 @@
 import { useCallback, useState } from "react";
 
 const useIsOpenControl = (initialState = false) => {
-  const [isOpen, setIsOpen] = useState(initialState);
+  const [isopen, setIsopen] = useState(initialState);
 
-  const open = useCallback(() => setIsOpen(true), []);
-  const close = useCallback(() => setIsOpen(false), []);
-  const toggle = useCallback(() => setIsOpen((isOpen) => !isOpen), []);
+  const open = useCallback(() => setIsopen(true), []);
+  const close = useCallback(() => setIsopen(false), []);
+  const toggle = useCallback(() => setIsopen((isOpen) => !isOpen), []);
 
-  return { isOpen, open, close, toggle };
+  return { isopen, open, close, toggle };
 };
 
 export default useIsOpenControl;

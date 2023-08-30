@@ -5,8 +5,12 @@ import { Button, Input } from "../kit";
 import Select from "../kit/Select";
 import { difficultyValues, muscleValues, typeValues } from "../constants";
 import useIsOpenControl from "../hooks/useIsOpenControl";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
+  const navigate = useNavigate();
+
+  const [dataList, setDataList] = useState([]);
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [muscle, setMuscle] = useState("");
@@ -14,14 +18,13 @@ const Form = () => {
   const { close } = useIsOpenControl();
 
   const getData = async () => {
-    console.log("funct");
     const response = await axios.get(
       `https://api.api-ninjas.com/v1/exercises?name=${name}&type=${type}`,
       {
         headers: { "X-Api-Key": "jaZSeyvUm3oP8FPdfktaqg==6SjeepICfPRI7ofv" },
       }
     );
-    console.log(response.data);
+    navigate("/result", { state: response.data });
   };
 
   const setData = (selector: string, item: string) => {
