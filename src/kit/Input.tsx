@@ -1,13 +1,13 @@
-import { FC } from "react";
+import { FC, ChangeEvent, MouseEvent } from "react";
 import styled from "styled-components";
 
 interface InputProps {
   placeholder: string;
-  onChange: (e: any) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   label: string;
   value: string;
   hasClear?: boolean;
-  onClear?: (e: any) => void;
+  onClear?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Input: FC<InputProps> = ({
@@ -73,7 +73,7 @@ const InputLabel = styled.div({
   alignItems: "center",
   fontWeight: 600,
 });
-const ClearIcon = styled.div({
+const ClearIcon = styled.button({
   width: "20px",
   height: "20px",
   position: "absolute",
@@ -82,4 +82,6 @@ const ClearIcon = styled.div({
   alignItems: "center",
   justifyContent: "center",
   cursor: "pointer",
+  border: "none",
+  background: "none",
 });
