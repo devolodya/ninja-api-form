@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/ninjas-api-form/static/css/main.b964172d.css",
-    "main.js": "/ninjas-api-form/static/js/main.df4f772d.js",
+    "main.js": "/ninjas-api-form/static/js/main.0d0000ec.js",
     "index.html": "/ninjas-api-form/index.html",
     "main.b964172d.css.map": "/ninjas-api-form/static/css/main.b964172d.css.map",
-    "main.df4f772d.js.map": "/ninjas-api-form/static/js/main.df4f772d.js.map"
+    "main.0d0000ec.js.map": "/ninjas-api-form/static/js/main.0d0000ec.js.map"
   },
   "entrypoints": [
     "static/css/main.b964172d.css",
-    "static/js/main.df4f772d.js"
+    "static/js/main.0d0000ec.js"
   ]
 }
