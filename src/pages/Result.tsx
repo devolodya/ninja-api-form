@@ -1,10 +1,32 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import { FC, useState, useEffect } from "react";
+import styled from "styled-components";
+import { Exercise } from "../components";
 
-const Result = () => {
-  const { state } = useLocation();
+const Result: FC = () => {
+  const [state, setState] = useState(
+    JSON.parse(localStorage.getItem("state") || "{}")
+  );
   console.log(state);
-  return <div>Result</div>;
+  useEffect(() => {
+    localStorage.removeItem("state");
+  }, []);
+  return (
+    <Container>
+      {(state.length > 0 && state.map((el: any) => <Exercise data={el} />)) || (
+        <div>No data!</div>
+      )}
+    </Container>
+  );
 };
 
 export default Result;
+
+const Container = styled.div({
+  width: "100%",
+  height: "100vh",
+  display: "flex",
+  gap: "10px",
+  flexWrap: "wrap",
+  justifyContent: "center",
+  alignItems: "center",
+});

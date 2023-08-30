@@ -8,9 +8,6 @@ import useIsOpenControl from "../hooks/useIsOpenControl";
 import { useNavigate } from "react-router-dom";
 
 const Form = () => {
-  const navigate = useNavigate();
-
-  const [dataList, setDataList] = useState([]);
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [muscle, setMuscle] = useState("");
@@ -24,7 +21,8 @@ const Form = () => {
         headers: { "X-Api-Key": "jaZSeyvUm3oP8FPdfktaqg==6SjeepICfPRI7ofv" },
       }
     );
-    navigate("/result", { state: response.data });
+    localStorage.setItem("state", JSON.stringify(response.data));
+    window.open("/result", "_blank", "noreferrer");
   };
 
   const setData = (selector: string, item: string) => {
