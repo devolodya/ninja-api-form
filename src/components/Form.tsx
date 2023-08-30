@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import { Button, Input } from "../kit";
 import Select from "../kit/Select";
 import { difficultyValues, muscleValues, typeValues } from "../constants";
@@ -11,6 +12,17 @@ const Form = () => {
   const [muscle, setMuscle] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const { close } = useIsOpenControl();
+
+  const getData = async () => {
+    console.log("funct");
+    const response = await axios.get(
+      `https://api.api-ninjas.com/v1/exercises?name=${name}&type=${type}`,
+      {
+        headers: { "X-Api-Key": "jaZSeyvUm3oP8FPdfktaqg==6SjeepICfPRI7ofv" },
+      }
+    );
+    console.log(response.data);
+  };
 
   const setData = (selector: string, item: string) => {
     if (selector === "type") setType(item);
@@ -51,8 +63,9 @@ const Form = () => {
           onSelect={(item) => setData("difficulty", item)}
         />
         <Button
+          type="button"
           text="Search"
-          onClick={() => console.log(1)}
+          onClick={getData}
           disabled={name.length === 0}
         />
       </FormElement>
@@ -71,7 +84,7 @@ const Container = styled.div({
   justifyContent: "center",
   alignItems: "center",
 });
-const FormElement = styled.form({
+const FormElement = styled.div({
   width: "80%",
   height: "80%",
 });

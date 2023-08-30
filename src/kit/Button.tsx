@@ -5,6 +5,7 @@ interface ButtonProps {
   text: string;
   onClick: () => void;
   disabled?: boolean;
+  type?: string;
 }
 const Button: FC<ButtonProps> = ({ text, onClick, disabled }) => {
   return (

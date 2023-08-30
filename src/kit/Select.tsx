@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 import Dropdown from "./Dropdown";
-import useIsOpenControl from "../hooks/useIsOpenControl";
+import { useIsOpenControl } from "../hooks";
 
 interface SelectProps {
   placeholder: string;
@@ -20,13 +20,17 @@ const Select: FC<SelectProps> = ({
 }) => {
   const { isOpen, toggle } = useIsOpenControl();
 
+  const clearSelect = (value: any) => (value = "");
   return (
     <Container>
-      <InputLabel>{label}</InputLabel>
+      <SelectLabel>{label}</SelectLabel>
       <SelectContainer>
         <SelectElement onClick={toggle}>
           {(value && <Value>{value}</Value>) || (
             <Placeholder>{placeholder}</Placeholder>
+          )}
+          {value && (
+            <ClearIcon onClick={() => clearSelect(value)}>❌</ClearIcon>
           )}
           <DropIcon isOpen={isOpen}>🔽</DropIcon>
         </SelectElement>
@@ -71,7 +75,7 @@ const SelectElement = styled.div({
   alignItems: "center",
   cursor: "pointer",
 });
-const InputLabel = styled.div({
+const SelectLabel = styled.div({
   width: "80%",
   height: "20px",
   display: "flex",
@@ -89,6 +93,16 @@ const DropIcon = styled.div<{ isOpen: boolean }>(({ isOpen }) => ({
   transform: isOpen ? "rotate(180deg)" : "rotate(0)",
   transition: "0.2s ease-in",
 }));
+const ClearIcon = styled.div({
+  width: "20px",
+  height: "20px",
+  position: "absolute",
+  right: "20%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  cursor: "pointer",
+});
 const Placeholder = styled.div({
   height: "40px",
   position: "absolute",
