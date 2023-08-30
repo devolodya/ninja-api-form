@@ -1,20 +1,25 @@
 import { FC, useState, useEffect } from "react";
 import styled from "styled-components";
+
 import { Exercise } from "../components";
+
+import { keyGenerator } from "../utils";
 
 const Result: FC = () => {
   const [state, setState] = useState(
     JSON.parse(localStorage.getItem("state") || "{}")
   );
-  console.log(state);
+
   useEffect(() => {
     localStorage.removeItem("state");
   }, []);
+
   return (
     <Container>
-      {(state.length > 0 && state.map((el: any) => <Exercise data={el} />)) || (
-        <div>No data!</div>
-      )}
+      {(state.length > 0 &&
+        state.map((el: any) => (
+          <Exercise data={el} key={keyGenerator()} />
+        ))) || <RedText>No data!</RedText>}
     </Container>
   );
 };
@@ -29,4 +34,9 @@ const Container = styled.div({
   flexWrap: "wrap",
   justifyContent: "center",
   alignItems: "center",
+});
+const RedText = styled.div({
+  fontWeight: 600,
+  fontSize: "24px",
+  color: "red",
 });

@@ -1,8 +1,13 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-interface ExerciseProps {
-  data: any;
+export interface ExerciseProps {
+  data: {
+    name: string;
+    type: string;
+    muscle: string;
+    difficulty: string;
+  };
 }
 
 const Exercise: FC<ExerciseProps> = ({ data }) => {
@@ -55,5 +60,7 @@ const Difficulty = styled(Data)<{ difficulty: string }>(({ difficulty }) => ({
   background:
     difficulty === "beginner"
       ? "green"
-      : (difficulty = "intermediate" ? "yellow" : "red"),
+      : difficulty === "intermediate"
+      ? "yellow"
+      : "red",
 }));

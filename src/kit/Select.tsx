@@ -19,8 +19,6 @@ const Select: FC<SelectProps> = ({
   onSelect,
 }) => {
   const { isopen, toggle } = useIsOpenControl();
-
-  const clearSelect = (value: any) => (value = "");
   return (
     <Container>
       <SelectLabel>{label}</SelectLabel>
@@ -28,9 +26,6 @@ const Select: FC<SelectProps> = ({
         <SelectElement onClick={toggle}>
           {(value && <Value>{value}</Value>) || (
             <Placeholder>{placeholder}</Placeholder>
-          )}
-          {value && (
-            <ClearIcon onClick={() => clearSelect(value)}>❌</ClearIcon>
           )}
           <DropIcon isopen={isopen}>🔽</DropIcon>
         </SelectElement>
@@ -93,16 +88,6 @@ const DropIcon = styled.div<{ isopen: boolean }>(({ isopen }) => ({
   transform: isopen ? "rotate(180deg)" : "rotate(0)",
   transition: "0.2s ease-in",
 }));
-const ClearIcon = styled.div({
-  width: "20px",
-  height: "20px",
-  position: "absolute",
-  right: "20%",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  cursor: "pointer",
-});
 const Placeholder = styled.div({
   height: "40px",
   position: "absolute",

@@ -5,7 +5,7 @@ const useIsOpenControl = (initialState = false) => {
 
   const open = useCallback(() => setIsopen(true), []);
   const close = useCallback(() => setIsopen(false), []);
-  const toggle = useCallback(() => setIsopen((isOpen) => !isOpen), []);
+  const toggle = useCallback(() => setIsopen((isopen) => !isopen), []);
 
   return { isopen, open, close, toggle };
 };

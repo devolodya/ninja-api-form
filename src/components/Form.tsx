@@ -1,25 +1,21 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import styled from "styled-components";
-import axios from "axios";
-import { Button, Input } from "../kit";
-import Select from "../kit/Select";
-import { difficultyValues, muscleValues, typeValues } from "../constants";
-import useIsOpenControl from "../hooks/useIsOpenControl";
-import { useNavigate } from "react-router-dom";
 
-const Form = () => {
+import { Button, Input, Select } from "../kit";
+
+import { difficultyValues, muscleValues, typeValues } from "../constants";
+
+import { instance } from "../utils";
+
+const Form: FC = () => {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [muscle, setMuscle] = useState("");
   const [difficulty, setDifficulty] = useState("");
-  const { close } = useIsOpenControl();
 
   const getData = async () => {
-    const response = await axios.get(
-      `https://api.api-ninjas.com/v1/exercises?name=${name}&type=${type}`,
-      {
-        headers: { "X-Api-Key": "jaZSeyvUm3oP8FPdfktaqg==6SjeepICfPRI7ofv" },
-      }
+    const response = await instance.get(
+      `exercises?name=${name}&type=${type}&muscle=${muscle}&difficulty=${difficulty}`
     );
     localStorage.setItem("state", JSON.stringify(response.data));
     window.open("/result", "_blank", "noreferrer");
@@ -29,8 +25,8 @@ const Form = () => {
     if (selector === "type") setType(item);
     if (selector === "muscle") setMuscle(item);
     if (selector === "difficulty") setDifficulty(item);
-    close();
   };
+
   return (
     <Container>
       <FormElement>
@@ -67,7 +63,12 @@ const Form = () => {
           type="button"
           text="Search"
           onClick={getData}
-          disabled={name.length === 0}
+          disabled={
+            name.length === 0 &&
+            type === "" &&
+            muscle === "" &&
+            difficulty === ""
+          }
         />
       </FormElement>
     </Container>
