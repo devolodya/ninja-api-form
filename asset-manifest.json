@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ninjas-api-form/static/css/main.b964172d.css",
+    "main.js": "/ninjas-api-form/static/js/main.df4f772d.js",
+    "index.html": "/ninjas-api-form/index.html",
+    "main.b964172d.css.map": "/ninjas-api-form/static/css/main.b964172d.css.map",
+    "main.df4f772d.js.map": "/ninjas-api-form/static/js/main.df4f772d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b964172d.css",
+    "static/js/main.df4f772d.js"
+  ]
+}
